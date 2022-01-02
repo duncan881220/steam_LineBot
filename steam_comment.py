@@ -46,14 +46,15 @@ def getHistoryPrice(game_id):
 
     Historical_low = requests.get("https://api.isthereanydeal.com/v01/game/lowest/?region=us&shops=steam&key=" + API_key + "&plains=" + plain).json()
     Historical_low_cut = Historical_low["data"][plain]["cut"]
-    
+
     html = requests.get(steam_url).text
     soup = BeautifulSoup(html, "html.parser")
-    current_price_bg = soup.find("div", "game_purchase_action_bg")
-    current_price_div = current_price_bg.find("div", "game_purchase_price price")
-    if(not current_price_div):
+    
+    current_price_div = soup.find("div", "game_purchase_price price")
+    if(not current_price_div.text):
+        current_price_bg = soup.find("div", "game_purchase_action_bg")
         current_price_div = current_price_bg.find("div", "discount_original_price")
-
+        
     original_price = re.search('NT\$ (\d+,?\d+)',current_price_div.text).group(1)
     original_price = original_price.replace(",","")
 
@@ -104,9 +105,9 @@ def getGameInfo(game_id):
 
 if __name__ == "__main__":
     #get_comment(494430,50)
-    #getHistoryPrice(728530)
+    getHistoryPrice(1487390)
 
     #getGameInfo(924970)
 
-    SearchGamebyName("Persona® 5 Strikers")
+    #SearchGamebyName("Persona® 5 Strikers")
 
