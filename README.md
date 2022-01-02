@@ -11,7 +11,9 @@
 
 ### 價格資訊
 利用第3方網站isThereAnyDeal所提供的API來獲取打折的%數
+
 因為isThereAnyDeal上沒有台灣區遊戲的定價
+
 所以爬取steam商店頁面上的價格再利用獲得的折扣%數來計算最後價格
 
 ## isThereAnyDeal API
@@ -20,4 +22,5 @@
 
 
 [API文件](https://itad.docs.apiary.io/#)
+
 [網站app 註冊頁面](https://new.isthereanydeal.com/apps/create/)
