@@ -1,6 +1,7 @@
 from transitions.extensions import GraphMachine
 
 class BotStateMachine(GraphMachine):
+    current_game_id = 0
     def __init__(self, **machine_configs):
         self.machine = GraphMachine(model=self, **machine_configs)
     def is_show_price_imformation(self, event):
@@ -56,11 +57,4 @@ def show_fsm(machine):
 if __name__ == "__main__":
     machine = CreateLineBotMachine()
     show_fsm(machine)
-    print(machine.state)
-    machine.advance("d", ["a", "b", "c"])
-    print(machine.state)
-    # machine.info("遊戲資訊")
-    # print(machine.state)
-    # machine.info("價格資訊")
-    # print(machine.state)
     
